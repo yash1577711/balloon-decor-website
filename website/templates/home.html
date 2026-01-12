@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Shree Shyam Decor | Premium Event Decor</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Luxury balloon decoration for birthdays, weddings & events. Dark, classy & trendy decor. Contact instantly on WhatsApp.">
+  <meta name="keywords" content="balloon decoration, luxury decor, birthday decoration, event decoration">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- FONTS & ICONS -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+<a href="https://wa.me/919310997319"
+   class="whatsapp-float"
+   aria-label="Chat on WhatsApp"
+   target="_blank">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+
+
+<!-- LOADER BAR -->
+<div id="loader-bar"></div>
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="logo">Shree Shyam<span>Decor</span></div>
+
+  <nav id="navMenu">
+  <div class="nav-links">
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+
+    <a href="https://instagram.com/yourpage" target="_blank" class="nav-icon">
+      <i class="fab fa-instagram"></i> Instagram
+    </a>
+
+    <a href="https://wa.me/919310997319" class="nav-whatsapp">
+      <i class="fab fa-whatsapp"></i> WhatsApp
+    </a>
+  </div>
+</nav>
+
+
+  <div class="menu-btn" onclick="toggleMenu()">
+    <i class="fas fa-bars"></i>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>Shree Shyam Decor</h1>
+    <p>Dark • Classy • Trendy Event Styling</p>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <h2>Our Designs</h2>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="img-box">
+        <img src="/static/images/1.jpg" alt="Birthday Decoration">
+      </div>
+      <div class="card-title">Birthday Setup</div>
+    </div>
+
+    <div class="card">
+      <div class="img-box">
+        <img src="/static/images/2.jpg" alt="Baby Shower Decoration">
+      </div>
+      <div class="card-title">Baby Shower</div>
+    </div>
+
+    <div class="card">
+      <div class="img-box">
+        <img src="/static/images/3.jpg" alt="Wedding Decoration">
+      </div>
+      <div class="card-title">Wedding Decor</div>
+    </div>
+
+    <div class="card">
+      <div class="img-box">
+        <img src="/static/images/4.jpg" alt="Kids Decoration">
+      </div>
+      <div class="card-title">Kids Party</div>
+    </div>
+
+    <div class="card">
+      <div class="img-box">
+        <img src="/static/images/5.jpg" alt="Ring Ceremony">
+      </div>
+      <div class="card-title">Ring Ceremony</div>
+    </div>
+
+    <div class="card">
+      <div class="img-box">
+        <img src="/static/images/6.jpg" alt="Premium Setup">
+      </div>
+      <div class="card-title">Premium Setup</div>
+    </div>
+    <div class="card">
+      <div class="img-box">
+        <img src="/static/images/7.jpg" alt="Premium Setup">
+      </div>
+      <div class="card-title">Anniversary Setup</div>
+    </div>
+    <div class="card">
+      <div class="img-box">
+        <img src="/static/images/8.jpg" alt="Premium Setup">
+      </div>
+      <div class="card-title">Annaprashan</div>
+    </div>
+    <div class="card">
+      <div class="img-box">
+        <img src="/static/images/9.jpg" alt="Premium Setup">
+      </div>
+      <div class="card-title">Love Theme</div>
+    </div>
+    <div class="card">
+      <div class="img-box">
+        <img src="/static/images/10.jpg" alt="Premium Setup">
+      </div>
+      <div class="card-title">Just Married</div>
+    </div>
+    <div class="card">
+      <div class="img-box">
+        <img src="/static/images/11.jpg" alt="Premium Setup">
+      </div>
+      <div class="card-title">Canopy Setup</div>
+    </div>
+    <div class="card">
+      <div class="img-box">
+        <img src="/static/images/12.jpg" alt="Premium Setup">
+      </div>
+      <div class="card-title">Bachelor Party</div>
+    </div>
+    
+    
+
+  </div>
+
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <h2>Send Enquiry</h2>
+
+  <form id="enquiryForm">
+  <input type="text" name="name" placeholder="Your Name" required>
+  <input type="tel" name="phone" placeholder="Phone Number" required>
+  <textarea name="message" placeholder="Event details" required></textarea>
+  <button type="submit">Submit</button>
+</form>
+
+<p id="formMsg"></p>
+
+<script>
+document.getElementById("enquiryForm").addEventListener("submit", async function(e){
+  e.preventDefault();
+
+  const msg = document.getElementById("formMsg");
+  msg.innerText = "Sending...";
+
+  const res = await fetch("/submit/", {
+    method: "POST",
+    body: new FormData(this)
+  });
+
+  if (res.ok) {
+    msg.innerText = "✅ Enquiry sent successfully!";
+    this.reset();
+  } else {
+    msg.innerText = "❌ Error occurred!";
+  }
+});
+</script>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h3>Balloon Decor</h3>
+      <p>Premium balloon decoration for all occasions.</p>
+    </div>
+
+    <div>
+      <h4>Quick Links</h4>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+    <div>
+      <h4>Connect</h4>
+      <a href="https://instagram.com/yourpage" target="_blank">Instagram</a>
+      <a href="https://wa.me/91XXXXXXXXXX" target="_blank">WhatsApp</a>
+    </div>
+  </div>
+
+  <p class="copyright">© 2026 Balloon Decor. All rights reserved.</p>
+</footer>
+
+<script>
+  // Loader bar
+  window.onload = () => {
+    document.getElementById("loader-bar").style.width = "100%";
+    setTimeout(() => {
+      document.getElementById("loader-bar").style.display = "none";
+    }, 600);
+  };
+
+  // Mobile menu
+  function toggleMenu(){
+    document.getElementById("navMenu").classList.toggle("active");
+  }
+
+  // Form submit
+  document.getElementById("enquiryForm").addEventListener("submit", async function(e){
+    e.preventDefault();
+    const res = await fetch("/submit/", { method: "POST", body: new FormData(this) });
+    document.getElementById("formMsg").innerText =
+      res.ok ? "✅ Enquiry Sent!" : "❌ Error occurred";
+    if(res.ok) this.reset();
+    
+  });
+  const navLinks = document.querySelectorAll(".nav-links a");
+  navLinks.forEach(link => {
+    link.addEventListener("click", () => {
+      document.getElementById("navMenu").classList.remove("active");
+    });
+  });
+
+</script>
+
+
+</body>
+</html>
