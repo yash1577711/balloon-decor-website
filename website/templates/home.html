@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,20 +11,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- FONTS & ICONS -->
+   <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+/>
+
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <link rel="stylesheet" href="/static/css/style.css">
+<div class="popup-overlay" id="popup">
+  <div class="popup-box">
+
+    <button class="close-btn" onclick="closePopup()">✖</button>
+
+    <h3 id="popupTitle"></h3>
+
+    <div class="popup-gallery" id="popupGallery"></div>
+
+    <div class="popup-actions">
+      <button class="popup-contact-btn" onclick="scrollToForm()">
+        Contact for This Setup
+      </button>
+    </div>
+
+  </div>
+</div>
+<div class="floating-actions">
+  <a href="tel:+919999999999" class="float-btn call-btn" aria-label="Call Now">
+    <i class="fa-solid fa-phone"></i>
+  </a>
+
+  <a
+    href="https://wa.me/919999999999"
+    class="float-btn whatsapp-btn"
+    aria-label="Chat on WhatsApp"
+    target="_blank"
+  >
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+</div>
+
 </head>
 
-<body>
-<a href="https://wa.me/919310997319"
-   class="whatsapp-float"
-   aria-label="Chat on WhatsApp"
-   target="_blank">
-  <i class="fab fa-whatsapp"></i>
-</a>
-
+ 
 
 
 <!-- LOADER BAR -->
@@ -72,6 +104,7 @@
         <img src="/static/images/1.jpg" alt="Birthday Decoration">
       </div>
       <div class="card-title">Birthday Setup</div>
+      <button class="view-btn" onclick="openPopup('birthday')">View Samples</button>
     </div>
 
     <div class="card">
@@ -79,6 +112,7 @@
         <img src="/static/images/2.jpg" alt="Baby Shower Decoration">
       </div>
       <div class="card-title">Baby Shower</div>
+      <button class="view-btn" onclick="openPopup('bayshower')">View Samples</button>
     </div>
 
     <div class="card">
@@ -86,6 +120,7 @@
         <img src="/static/images/3.jpg" alt="Wedding Decoration">
       </div>
       <div class="card-title">Wedding Decor</div>
+      <button class="view-btn" onclick="openPopup('wedding')">View Samples</button>
     </div>
 
     <div class="card">
@@ -93,6 +128,7 @@
         <img src="/static/images/4.jpg" alt="Kids Decoration">
       </div>
       <div class="card-title">Kids Party</div>
+      <button class="view-btn" onclick="openPopup('kids')">View Samples</button>
     </div>
 
     <div class="card">
@@ -100,6 +136,7 @@
         <img src="/static/images/5.jpg" alt="Ring Ceremony">
       </div>
       <div class="card-title">Ring Ceremony</div>
+      <button class="view-btn" onclick="openPopup('ring')">View Samples</button>
     </div>
 
     <div class="card">
@@ -107,42 +144,49 @@
         <img src="/static/images/6.jpg" alt="Premium Setup">
       </div>
       <div class="card-title">Premium Setup</div>
+    <button class="view-btn" onclick="openPopup('premium')">View Samples</button>
     </div>
     <div class="card">
       <div class="img-box">
         <img src="/static/images/7.jpg" alt="Premium Setup">
       </div>
       <div class="card-title">Anniversary Setup</div>
+    <button class="view-btn" onclick="openPopup('anniversary')">View Samples</button>
     </div>
     <div class="card">
       <div class="img-box">
         <img src="/static/images/8.jpg" alt="Premium Setup">
       </div>
       <div class="card-title">Annaprashan</div>
+    <button class="view-btn" onclick="openPopup('annaprashan')">View Samples</button>
     </div>
     <div class="card">
       <div class="img-box">
         <img src="/static/images/9.jpg" alt="Premium Setup">
       </div>
       <div class="card-title">Love Theme</div>
+    <button class="view-btn" onclick="openPopup('lovetheme')">View Samples</button>
     </div>
     <div class="card">
       <div class="img-box">
         <img src="/static/images/10.jpg" alt="Premium Setup">
       </div>
       <div class="card-title">Just Married</div>
+    <button class="view-btn" onclick="openPopup('justmarried')">View Samples</button>
     </div>
     <div class="card">
       <div class="img-box">
         <img src="/static/images/11.jpg" alt="Premium Setup">
       </div>
       <div class="card-title">Canopy Setup</div>
+    <button class="view-btn" onclick="openPopup('canopy')">View Samples</button>
     </div>
     <div class="card">
       <div class="img-box">
         <img src="/static/images/12.jpg" alt="Premium Setup">
       </div>
       <div class="card-title">Bachelor Party</div>
+    <button class="view-btn" onclick="openPopup('bachelor')">View Samples</button>
     </div>
     
     
@@ -240,8 +284,64 @@ document.getElementById("enquiryForm").addEventListener("submit", async function
     });
   });
 
+
 </script>
 
+<script>
+const imageData = {
+  birthday: [
+    "/static/images/1.jpg",
+    "/static/images/2.jpg",
+    "/static/images/3.jpg"
+  ],
+  wedding: [
+    "/static/images/4.jpg",
+    "/static/images/5.jpg",
+    "/static/images/6.jpg"
+  ],
+  baby: [
+    "/static/images/7.jpg",
+    "/static/images/8.jpg"
+  ]
+};
 
+function openPopup(category) {
+  console.log("Popup opening:", category);
+
+  const popup = document.getElementById("popup");
+  const gallery = document.getElementById("popupGallery");
+  const title = document.getElementById("popupTitle");
+
+  if (!popup) {
+    alert("Popup HTML missing");
+    return;
+  }
+
+  gallery.innerHTML = "";
+  title.innerText = category.toUpperCase() + " Designs";
+
+  imageData[category].forEach(src => {
+    const img = document.createElement("img");
+    img.src = src;
+    gallery.appendChild(img);
+  });
+
+  popup.style.display = "flex";
+  document.body.style.overflow = "hidden";
+}
+
+function closePopup() {
+  const popup = document.getElementById("popup");
+  popup.style.display = "none";
+
+  // FULL unlock (important for mobile)
+  document.body.style.overflow = "";
+  document.documentElement.style.overflow = "";
+}
+function scrollToForm() {
+  closePopup();
+  document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+}
+</script>
 </body>
 </html>

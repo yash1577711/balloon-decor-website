@@ -1,3 +1,10 @@
+function scrollToForm() {
+  closePopup();
+  document.getElementById("contact").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
 function toggleMenu() {
   const nav = document.getElementById("navMenu");
   const isOpen = nav.classList.toggle("active");
